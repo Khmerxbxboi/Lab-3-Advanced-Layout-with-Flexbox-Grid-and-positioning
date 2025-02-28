@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Understanding HTML</title>
+
+<script>
+    async function fetchYahooNews() {
+        const rssUrl = "https://feeds.finance.yahoo.com/rss/2.0/headline?s=SMCI&region=US&lang=en-US";
+        const proxyUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(rssUrl);
+    
+        try {
+            const response = await fetch(proxyUrl);
+            const data = await response.json();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+            const items = xmlDoc.querySelectorAll("item");
+            
+            let newsHtml = "";
+            items.forEach((item, index) => {
+                if (index < 5) { 
+                    const title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    newsHtml += `<li><a href="${link}" target="_blank">${title}</a></li>`;
+                }
+            });
+    
+            document.getElementById("news-list").innerHTML = newsHtml;
+        } catch (error) {
+            console.error("Error fetching Yahoo Finance news:", error);
+        }
+    }
+    
+    fetchYahooNews();
+</script>
+
+
+
+<link href="mystyle.css" rel="stylesheet" type="text/css">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodaro AI Dashboard</title>
+ 
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="card header">Sodaro AI Market Dashboard&nbsp;<P></P> <BR>
+            <form role="search" id="form">
+                <input type="search" id="query" name="q" placeholder="Search..." aria-label="Search through site content">
+                <button>
+                  <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+                </button>
+              </form>
+              <script>
+                const f = document.getElementById('form');
+                const q = document.getElementById('query');
+                const google = 'https://www.google.com/search?q=site%3A+';
+                const site = 'pagedart.com';
+          
+                function submitted(event) {
+                  event.preventDefault();
+                  const url = google + site + '+' + q.value;
+                  const win = window.open(url, '_blank');
+                  win.focus();
+                }
+          
+                f.addEventListener('submit', submitted);
+              </script>
+
+
+        </div>
+        <div class="card market-trends">Real-Time Market Trends
+            <BR>
+
+<table id="q-graph">
+<caption>Quarterly Results</caption>
+
+<tbody>
+<tr class="qtr" id="q1">
+<th scope="row">Q1</th>
+<td class="sent bar" style="height: 111px;"><p>$44.55</p></td>
+<td class="paid bar" style="height: 99px;"><p>$54.55</p></td>
+</tr>
+<tr class="qtr" id="q2">
+<th scope="row">Q2</th>
+<td class="sent bar" style="height: 206px;"><p>$51.45</p></td>
+<td class="paid bar" style="height: 194px;"><p>$32.45</p></td>
+</tr>
+<tr class="qtr" id="q3">
+<th scope="row">Q3</th>
+<td class="sent bar" style="height: 259px;"><p>$43.44</p></td>
+<td class="paid bar" style="height: 193px;"><p>$32.33</p></td>
+</tr>
+<tr class="qtr" id="q4">
+<th scope="row">Q4</th>
+<td class="sent bar" style="height: 110px;"><p>$18.546</p></td>
+<td class="paid bar" style="height: 195px;"><p>$44.45</p></td>
+</tr>
+</tbody>
+</table>
+
+
+        </div>
+        <div class="card ai-insights">AI-Powered Financial Insights  <BR>
+            <div class="market-bar">
+                <div class="block bearish"></div>
+                <div class="block neutral"></div>
+                <div class="block bullish"></div>
+              </div><img src="images/Bull.jpg" class="fade-image" alt="Bull Image"></div>
+              <div class="card portfolio">
+                Your Portfolio
+                <div class="tooltip">$SMCI: you have 50 shares</div></div>
+        <div class="news-feed">
+            <h5 style="margin-right: 5px;">Latest Financial News on SMCI &nbsp;
+                <p style="font-size: 25px; font-weight: bold;"><BR>
+                  <strong>$44.25 USD</strong>
+                </p>
+              </h5>
+            <ul id="news-list"></ul>
+        </div>
+        
+    </div>
+    
+    
+    <div class="footer">
+        <span class="investment-text">My investment: </span>
+        <a href="#home" class="investment-amount">$479.50</a>
+        <a href="#contact">BUY</a>
+    </div>
+
+</body>
+</html>

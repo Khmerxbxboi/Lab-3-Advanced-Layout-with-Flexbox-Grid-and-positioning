@@ -1,0 +1,464 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	background: #121212;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.dashboard {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 100px 300px 200px;
+	gap: 15px;
+	width: 90vw;
+	max-width: 1200px;
+	padding: 20px;
+}
+
+.card {
+	padding: 20px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.header {
+	grid-column: 1 / 4;
+	background: #1e1e1e;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.market-trends {
+	grid-column: 1 / 3;
+	grid-row: 2 / 3;
+	background: #ff6f61;
+}
+
+.ai-insights {
+	grid-column: 3 / 4;
+	grid-row: 2 / 4;
+	background: #6b5b95;
+}
+
+.portfolio {
+	grid-column: 1 / 2;
+	grid-row: 3 / 4;
+	background: #feb236;
+}
+
+/* NEWS FROM YAHOO RSS (double check ok) */
+.news-feed {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    width: 100%;
+    max-width: 800px; 
+    height: auto;
+    max-height: 200px; 
+    overflow-y: auto;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: Arial, sans-serif;
+	
+	background-color: #4CAF50;
+}
+
+
+a:hover {
+	 color: rgb(255, 255, 255);
+	 font-size: 12px;
+	 text-decoration: none;
+	 display: inline-block; text-align: left;
+  
+	
+	}
+a { color: rgb(238, 242, 12);
+	font-size: 12px;
+	text-decoration: none;
+	display: inline-block; text-align: left;
+}
+
+@media (max-width: 768px) {
+    .news-feed {
+        width: 90%; 
+        height: auto;
+        max-height: 200px; 
+        font-size: 14px; 
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-feed {
+        width: 95%;
+        max-height: 250px; 
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: #33333347;
+    padding: 15px 0; 
+    font-size: smaller;
+    text-align: center;
+}
+
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #33333347;
+    padding: 15px 0;
+    font-size:medium;
+    text-align: center;
+}
+
+.investment-text {
+    margin-right: 5px; 
+    display: inline-flex;
+    align-items: center;
+    color: white;
+}
+
+.investment-amount {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+
+.card.market-trends {
+	animation: spin-labels 2s linear infinite;
+  }
+  
+  @keyframes spin-labels {
+	0%   { transform: rotateX(0deg); }
+	50%  { transform: rotateX(360deg); }
+	100% { transform: rotateX(360deg); }
+  }
+
+  #q-graph {
+	display: block; /* fixes layout wonkiness in FF1.5 */
+	position: relative; 
+	width: 600px; 
+	height: 300px;
+	margin: 1.1em 0 0; 
+	padding: 0;
+	background: transparent;
+	font-size: 11px;
+  }
+  
+  #q-graph caption {
+	caption-side: top; 
+	width: 600px;
+	text-transform: uppercase;
+	letter-spacing: .5px;
+	top: -40px;
+	position: relative; 
+	z-index: 10;
+	font-weight: bold;
+  }
+  
+  #q-graph tr, #q-graph th, #q-graph td { 
+	position: absolute;
+	bottom: 0; 
+	width: 150px; 
+	z-index: 2;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+  }
+  
+  #q-graph td {
+	transition: all .3s ease;
+	
+	&:hover {
+	  background-color: desaturate(#85144b, 100);
+	  opacity: .9;
+	  color: white;
+	}
+  }
+	
+  #q-graph thead tr {
+	left: 100%; 
+	top: 50%; 
+	bottom: auto;
+	margin: -2.5em 0 0 5em;}
+  #q-graph thead th {
+	width: 7.5em; 
+	height: auto; 
+	padding: 0.5em 1em;
+  }
+  #q-graph thead th.sent {
+	top: 0; 
+	left: 0; 
+	line-height: 2;
+  }
+  #q-graph thead th.paid {
+	top: 2.75em; 
+	line-height: 2;
+	left: 0; 
+  }
+  
+  #q-graph tbody tr {
+	height: 296px;
+	padding-top: 2px;
+	border-right: 1px dotted #C4C4C4; 
+	color: #AAA;
+  }
+  #q-graph #q1 {
+	left: 0;
+  }
+  #q-graph #q2 {left: 150px;}
+  #q-graph #q3 {left: 300px;}
+  #q-graph #q4 {left: 450px; border-right: none;}
+  #q-graph tbody th {bottom: -1.75em; vertical-align: top;
+  font-weight: normal; color: #333;}
+  #q-graph .bar {
+	width: 60px; 
+	border: 1px solid; 
+	border-bottom: none; 
+	color: #000;
+  }
+  #q-graph .bar p {
+	margin: 5px 0 0; 
+	padding: 0;
+	opacity: .4;
+  }
+  #q-graph .sent {
+	left: 13px; 
+	background-color: $color-sent;
+	border-color: transparent;
+  }
+  #q-graph .paid {
+	left: 77px; 
+	background-color: $color-paid;
+	border-color: transparent;
+  }
+  
+  
+  #ticks {
+	position: relative; 
+	top: -300px; 
+	left: 2px;
+	width: 596px; 
+	height: 300px; 
+	z-index: 1;
+	margin-bottom: -300px;
+	font-size: 10px;
+	font-family: "fira-sans-2", Verdana, sans-serif;
+  }
+  
+  #ticks .tick {
+	position: relative; 
+	border-bottom: 1px dotted #C4C4C4; 
+	width: 600px;
+  }
+  
+  #ticks .tick p {
+	position: absolute; 
+	left: -5em; 
+	top: -0.8em; 
+	margin: 0 0 0 0.5em;
+  }
+
+  form {
+	background-color: #4654e1;
+	width: 300px;
+	height: 44px;
+	border-radius: 5px;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+  }
+
+  input {
+	all: unset;
+	font: 16px system-ui;
+	color: #fff;
+	height: 100%;
+	width: 100%;
+	padding: 6px 10px;
+  }
+
+  ::placeholder {
+	color: #fff;
+	opacity: 0.7; 
+  }
+
+  svg {
+	color: #fff;
+	fill: currentColor;
+	width: 24px;
+	height: 24px;
+	padding: 10px;
+  }
+
+  button {
+	all: unset;
+	cursor: pointer;
+	width: 44px;
+	height: 44px;
+  }
+	display: inline-block;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.3s ease, font-family 0.3s ease, color 0.3s ease;
+  }
+  
+  .card.portfolio:hover {
+	transform: scale(1.2); /* Makes the text "pop" */
+	font-family: 'Comic Sans MS', cursive, sans-serif; /* Comic font */
+	color: #ff6347; /* Change text color to something bright */
+  }
+
+  .market-bar {
+	display: flex;
+	width: 80%;
+	height: 50px;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .block {
+	flex-grow: 1;
+	transition: all 0.3s ease-in-out;
+  }
+  
+  .bearish {
+	background-color: red;
+  }
+  
+  .neutral {
+	background-color: gray;
+  }
+  
+  .bullish {
+	background-color: green;
+  }
+  
+
+  .market-bar {
+	display: flex;
+	width: 80%;
+	height: 50px;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	animation: marketAnimation 5s infinite ease-in-out;
+  }
+  
+  .block {
+	flex-grow: 1;
+	transition: all 0.3s ease-in-out;
+  }
+  
+  /* Initial colors */
+  .bearish {
+	background-color: red;
+  }
+  
+  .neutral {
+	background-color: gray;
+  }
+  
+  .bullish {
+	background-color: green;
+  }
+  
+  /* Animation keyframes for market change */
+  @keyframes marketAnimation {
+	0% {
+	  background-color: red;
+	}
+	33% {
+	  background-color: gray;
+	}
+	66% {
+	  background-color: green;
+	}
+	100% {
+	  background-color: red;
+	}
+  }
+
+  .fade-image {
+    opacity: 0;
+    transition: opacity 2s ease-in-out; /* Adjust the duration and easing */
+	width: 15%; 
+}
+
+.card:hover .fade-image {
+    opacity: 1;
+}
+
+.portfolio {
+	position: relative;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 20px;
+	background-color: #f0f0f0;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.portfolio:hover {
+	background-color: #cce7ff;
+}
+
+.tooltip {
+	visibility: hidden;
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	margin-left: 10px;
+	transform: translateY(-50%);
+	padding: 5px 10px;
+	background-color: #333;
+	color: #fff;
+	border-radius: 3px;
+	font-size: 14px;
+	white-space: nowrap;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.portfolio:hover .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
